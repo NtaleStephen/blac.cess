@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ShoppingBag, Menu, X, Search } from 'lucide-react'
 import { useCartStore } from '@/store/cart'
 import clsx from 'clsx'
+import CrownLogo from '@/components/shared/CrownLogo'
 
 const navLinks = [
   { href: '/products', label: 'Collection' },
@@ -46,12 +47,10 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-serif text-xl font-bold tracking-tight group"
+            className="group"
             aria-label="Blac.cess — Return to homepage"
           >
-            <span className="text-gold-shimmer">BLAC</span>
-            <span className="text-white">.</span>
-            <span className="text-gold-shimmer">CESS</span>
+            <CrownLogo className="h-7 w-auto" priority />
           </Link>
 
           {/* Desktop nav */}

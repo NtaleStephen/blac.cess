@@ -29,10 +29,10 @@ export default function HomePage() {
       >
         {/* Black Drapery Parallax Background */}
         <div 
-          className="hero-drapery absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80 z-0"
+          className="hero-drapery absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95 z-0"
           style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1603991206126-17b2b73bc358?q=80&w=2000&auto=format&fit=crop')",
-            transform: `translateY(${scrollY * 0.55}px) scale(1.06)` 
+            backgroundImage: "url('/images/EC5DA517-0A9A-422B-B7EA-9EF99BE80DA5.PNG')",
+            transform: `translateY(${scrollY * 0.35}px) scale(1.08)` 
           }}
         />
 
@@ -46,13 +46,7 @@ export default function HomePage() {
         />
 
         {/* Vignette to keep cloth visible but increase contrast */}
-        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.75) 70%, rgba(0,0,0,0.95) 100%)' }} />
-
-        {/* Tiny Crowns Repeating Pattern (Parallax) */}
-        <div
-          className="absolute inset-0 bg-hero-pattern opacity-100 z-0"
-          style={{ transform: `translateY(${scrollY * 0.25}px)` }}
-        />
+        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.85) 100%)' }} />
 
         {/* Radial gold glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -66,10 +60,10 @@ export default function HomePage() {
 
         {/* Giant Crown Watermark */}
         <div 
-          className="hero-watermark absolute inset-0 flex items-center justify-center opacity-[0.09] pointer-events-none z-0"
+          className="hero-watermark absolute inset-0 flex items-center justify-center opacity-[0.12] pointer-events-none z-0"
           style={{ transform: `translateY(${scrollY * 0.16}px)` }}
         >
-          <CrownLogo className="w-[160vw] md:w-[105vw] max-w-[1400px] text-gold" />
+          <CrownLogo className="w-[180vw] md:w-[115vw] max-w-[1600px]" />
         </div>
 
         {/* Floating dots */}
@@ -88,8 +82,6 @@ export default function HomePage() {
 
         {/* Hero content */}
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center">
-          
-          <CrownLogo className="w-24 md:w-32 text-gold mb-10 animate-fade-in" style={{ animationDelay: '0.1s' }} />
 
           {/* Main title */}
           <h1
@@ -148,8 +140,6 @@ export default function HomePage() {
 
       {/* ===== VALUE PROPS ===== */}
       <section className="crown-frame bg-charcoal py-10 px-6">
-        <span className="crown-frame-side left" />
-        <span className="crown-frame-side right" />
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-gold/20">
           {[
             { icon: Gem, label: 'Premium Craftsmanship', desc: '450GSM heavyweight fabrics, precision-stitched' },
@@ -169,8 +159,6 @@ export default function HomePage() {
 
       {/* ===== FEATURED PRODUCTS ===== */}
       <section className="crown-frame bg-black py-24 px-6" id="collection">
-        <span className="crown-frame-side left" />
-        <span className="crown-frame-side right" />
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-16">
@@ -203,8 +191,6 @@ export default function HomePage() {
 
       {/* ===== BRAND STORY ===== */}
       <section className="crown-frame relative bg-charcoal py-24 px-6 overflow-hidden">
-        <span className="crown-frame-side left" />
-        <span className="crown-frame-side right" />
         {/* Background pattern */}
         <div className="absolute inset-0 bg-adire-pattern opacity-100 pointer-events-none" />
 
@@ -251,8 +237,6 @@ export default function HomePage() {
 
       {/* ===== FEATURED PRODUCT HERO ===== */}
       <section className="crown-frame bg-black py-24 px-6">
-        <span className="crown-frame-side left" />
-        <span className="crown-frame-side right" />
         <div className="max-w-7xl mx-auto">
           <div className="relative overflow-hidden kuba-corner">
             <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -296,8 +280,6 @@ export default function HomePage() {
 
       {/* ===== CTA BANNER ===== */}
       <section className="crown-frame bg-gold py-16 px-6">
-        <span className="crown-frame-side left" />
-        <span className="crown-frame-side right" />
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-serif text-4xl md:text-5xl text-black font-bold mb-4">
             Join the Movement

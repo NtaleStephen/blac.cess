@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Instagram, Twitter, Youtube, Mail } from 'lucide-react'
+import CrownLogo from '@/components/shared/CrownLogo'
 
 const links = {
   shop: [
@@ -40,7 +41,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <span className="font-serif text-2xl font-bold text-gold-shimmer">BLAC.CESS</span>
+              <CrownLogo className="h-9 w-auto" />
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
               Culturally-inspired luxury streetwear. Premium pieces rooted in African heritage, crafted for those who wear their identity with intention.
