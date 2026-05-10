@@ -138,22 +138,67 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 gold-divider" />
       </section>
 
-      {/* ===== VALUE PROPS ===== */}
+      {/* ===== QUICK SHOP STRIP (HORIZONTAL SCROLL) ===== */}
       <section className="crown-frame bg-charcoal py-10 px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-gold/20">
-          {[
-            { icon: Gem, label: 'Premium Craftsmanship', desc: '450GSM heavyweight fabrics, precision-stitched' },
-            { icon: Globe, label: 'Cultural Heritage', desc: 'Every design rooted in African artistic traditions' },
-            { icon: Sparkles, label: 'Limited Editions', desc: 'Small-batch drops. Once gone, they\'re gone.' },
-          ].map(({ icon: Icon, label, desc }) => (
-            <div key={label} className="flex items-start gap-4 px-8 py-6">
-              <Icon size={20} className="text-gold mt-0.5 shrink-0" />
-              <div>
-                <p className="text-white font-semibold text-sm mb-1">{label}</p>
-                <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
-              </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between gap-6 mb-6">
+            <div>
+              <p className="gold-label mb-2">Shop Faster</p>
+              <h2 className="font-serif text-3xl md:text-4xl text-white">Swipe through the drops</h2>
             </div>
-          ))}
+            <Link href="/products" className="btn-ghost-gold hidden sm:inline-flex items-center gap-2 px-6 py-3 text-xs group">
+              Go to Products
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="-mx-6 px-6 overflow-x-auto">
+            <div className="flex gap-4 w-max pb-2">
+              {[
+                {
+                  src: 'https://images.unsplash.com/photo-1520975958221-8d3f8d8b7f92?auto=format&fit=crop&w=1400&q=80',
+                  alt: 'Blac.cess product preview — hoodie',
+                  className: 'w-[78vw] sm:w-[520px] h-[320px] sm:h-[340px]',
+                },
+                {
+                  src: 'https://images.unsplash.com/photo-1520975693410-001e70f6e3a0?auto=format&fit=crop&w=1200&q=80',
+                  alt: 'Blac.cess product preview — jacket',
+                  className: 'w-[62vw] sm:w-[420px] h-[260px] sm:h-[280px]',
+                },
+                {
+                  src: 'https://images.unsplash.com/photo-1520975867597-0d7cc44be4c3?auto=format&fit=crop&w=1200&q=80',
+                  alt: 'Blac.cess product preview — tee',
+                  className: 'w-[54vw] sm:w-[360px] h-[300px] sm:h-[340px]',
+                },
+                {
+                  src: 'https://images.unsplash.com/photo-1520975699161-9a444548d652?auto=format&fit=crop&w=1200&q=80',
+                  alt: 'Blac.cess product preview — details',
+                  className: 'w-[70vw] sm:w-[480px] h-[240px] sm:h-[260px]',
+                },
+              ].map(({ src, alt, className }) => (
+                <Link
+                  key={src}
+                  href="/products"
+                  className={`relative shrink-0 overflow-hidden kuba-corner border border-gold/20 bg-black/30 ${className}`}
+                >
+                  <img
+                    src={src}
+                    alt={alt}
+                    className="absolute inset-0 w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition-opacity"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 sm:hidden">
+            <Link href="/products" className="btn-ghost-gold inline-flex items-center gap-2 px-8 py-4 text-xs group">
+              Go to Products
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -186,6 +231,25 @@ export default function HomePage() {
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ===== VALUE PROPS ===== */}
+      <section className="crown-frame bg-charcoal py-10 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-gold/20">
+          {[
+            { icon: Gem, label: 'Premium Craftsmanship', desc: '450GSM heavyweight fabrics, precision-stitched' },
+            { icon: Globe, label: 'Cultural Heritage', desc: 'Every design rooted in African artistic traditions' },
+            { icon: Sparkles, label: 'Limited Editions', desc: 'Small-batch drops. Once gone, they\'re gone.' },
+          ].map(({ icon: Icon, label, desc }) => (
+            <div key={label} className="flex items-start gap-4 px-8 py-6">
+              <Icon size={20} className="text-gold mt-0.5 shrink-0" />
+              <div>
+                <p className="text-white font-semibold text-sm mb-1">{label}</p>
+                <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
