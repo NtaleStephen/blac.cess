@@ -143,8 +143,8 @@ export default function HomePage() {
       {/* ===== QUICK SHOP (SINGLE PRODUCT + VARIANTS) ===== */}
       <section className="crown-frame bg-charcoal">
         <div className="max-w-7xl mx-auto">
-          <div className="relative flex justify-center">
-            <div className="relative w-full overflow-hidden kuba-corner border border-gold/20 bg-black/35">
+          <div className="relative">
+            <div className="relative w-full overflow-hidden bg-black">
               <div
                 ref={variantScrollerRef}
                 data-variant-scroller
@@ -157,15 +157,15 @@ export default function HomePage() {
               >
                 {[
                   {
-                    src: 'https://images.unsplash.com/photo-1520975958221-8d3f8d8b7f92?auto=format&fit=crop&w=1800&q=80',
+                    src: 'https://images.unsplash.com/photo-1556906781-9a412961d289?w=1200&q=80',
                     alt: 'Product variant — noir',
                   },
                   {
-                    src: 'https://images.unsplash.com/photo-1520975693410-001e70f6e3a0?auto=format&fit=crop&w=1800&q=80',
+                    src: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1200&q=80',
                     alt: 'Product variant — cream',
                   },
                   {
-                    src: 'https://images.unsplash.com/photo-1520975867597-0d7cc44be4c3?auto=format&fit=crop&w=1800&q=80',
+                    src: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=1200&q=80',
                     alt: 'Product variant — graphite',
                   },
                 ].map(({ src, alt }) => (
@@ -174,14 +174,13 @@ export default function HomePage() {
                     href="/products"
                     className="relative w-full shrink-0 snap-center"
                   >
-                    <div className="relative h-[420px] sm:h-[520px]">
+                    <div className="relative h-[420px] sm:h-[580px] md:h-[640px]">
                       <img
                         src={src}
                         alt={alt}
                         className="absolute inset-0 w-full h-full object-cover object-center"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
                     </div>
                   </Link>
                 ))}
