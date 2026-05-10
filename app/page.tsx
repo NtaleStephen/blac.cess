@@ -141,77 +141,71 @@ export default function HomePage() {
       </section>
 
       {/* ===== QUICK SHOP (SINGLE PRODUCT + VARIANTS) ===== */}
-      <section className="crown-frame bg-charcoal">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative">
-            <div className="relative w-full overflow-hidden bg-black">
-              <div
-                ref={variantScrollerRef}
-                data-variant-scroller
-                className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
-                onScroll={e => {
-                  const el = e.currentTarget
-                  const index = Math.round(el.scrollLeft / el.clientWidth)
-                  setVariantIndex(index)
-                }}
-              >
-                {[
-                  {
-                    src: '/images/IMG_4340.JPG',
-                    alt: 'Product variant — noir',
-                  },
-                  {
-                    src: '/images/F137AD08-1511-4F6A-BFAD-B0E176D6A21C.PNG',
-                    alt: 'Product variant — cream',
-                  },
-                  {
-                    src: '/images/3E8CC15F-49F3-47F7-BC52-CDA9F08732B9.jpg',
-                    alt: 'Product variant — graphite',
-                  },
-                ].map(({ src, alt }) => (
-                  <Link
-                    key={src}
-                    href="/products"
-                    className="relative w-full shrink-0 snap-center"
-                  >
-                    <div className="relative h-[420px] sm:h-[580px] md:h-[640px]">
-                      <img
-                        src={src}
-                        alt={alt}
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                        loading="lazy"
-                      />
-                    </div>
-                  </Link>
-                ))}
+      <section className="relative w-full overflow-hidden bg-transparent">
+        <div
+          ref={variantScrollerRef}
+          data-variant-scroller
+          className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth w-full"
+          onScroll={e => {
+            const el = e.currentTarget
+            const index = Math.round(el.scrollLeft / el.clientWidth)
+            setVariantIndex(index)
+          }}
+        >
+          {[
+            {
+              src: '/images/IMG_4340.JPG',
+              alt: 'Product variant — noir',
+            },
+            {
+              src: '/images/F137AD08-1511-4F6A-BFAD-B0E176D6A21C.PNG',
+              alt: 'Product variant — cream',
+            },
+            {
+              src: '/images/3E8CC15F-49F3-47F7-BC52-CDA9F08732B9.jpg',
+              alt: 'Product variant — graphite',
+            },
+          ].map(({ src, alt }) => (
+            <Link
+              key={src}
+              href="/products"
+              className="relative w-full shrink-0 snap-center"
+            >
+              <div className="relative h-[60vh] md:h-[80vh] lg:h-screen w-full">
+                <img
+                  src={src}
+                  alt={alt}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
               </div>
+            </Link>
+          ))}
+        </div>
 
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex items-center gap-3 z-10">
-                {[
-                  { color: '#0b0b0b', label: 'Noir', index: 0 },
-                  { color: '#d8d6cf', label: 'Cream', index: 1 },
-                  { color: '#5a5a5a', label: 'Graphite', index: 2 },
-                ].map(({ color, label, index }) => (
-                  <button
-                    key={label}
-                    type="button"
-                    aria-label={`Select ${label} variant`}
-                    aria-pressed={variantIndex === index}
-                    className={`w-3.5 h-3.5 rounded-full border transition-colors ${
-                      variantIndex === index ? 'border-gold ring-2 ring-gold/30' : 'border-white/30 hover:border-gold'
-                    }`}
-                    style={{ backgroundColor: color }}
-                    onClick={() => {
-                      const scroller = variantScrollerRef.current
-                      if (!scroller) return
-                      scroller.scrollTo({ left: index * scroller.clientWidth, behavior: 'smooth' })
-                      setVariantIndex(index)
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex items-center gap-3 z-10">
+          {[
+            { color: '#0b0b0b', label: 'Noir', index: 0 },
+            { color: '#d8d6cf', label: 'Cream', index: 1 },
+            { color: '#5a5a5a', label: 'Graphite', index: 2 },
+          ].map(({ color, label, index }) => (
+            <button
+              key={label}
+              type="button"
+              aria-label={`Select ${label} variant`}
+              aria-pressed={variantIndex === index}
+              className={`w-3.5 h-3.5 rounded-full border transition-colors ${
+                variantIndex === index ? 'border-gold ring-2 ring-gold/30' : 'border-white/30 hover:border-gold'
+              }`}
+              style={{ backgroundColor: color }}
+              onClick={() => {
+                const scroller = variantScrollerRef.current
+                if (!scroller) return
+                scroller.scrollTo({ left: index * scroller.clientWidth, behavior: 'smooth' })
+                setVariantIndex(index)
+              }}
+            />
+          ))}
         </div>
       </section>
 
