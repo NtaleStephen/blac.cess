@@ -29,17 +29,29 @@ export default function HomePage() {
       >
         {/* Black Drapery Parallax Background */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 z-0"
+          className="hero-drapery absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80 z-0"
           style={{ 
             backgroundImage: "url('https://images.unsplash.com/photo-1603991206126-17b2b73bc358?q=80&w=2000&auto=format&fit=crop')",
-            transform: `translateY(${scrollY * 0.4}px)` 
+            transform: `translateY(${scrollY * 0.55}px) scale(1.06)` 
           }}
         />
 
+        {/* Moving fold highlights/shadows (parallax) */}
+        <div
+          className="hero-folds absolute inset-0 z-0"
+          style={{
+            transform: `translateY(${scrollY * 0.35}px) translateX(${scrollY * 0.06}px)`,
+            backgroundPosition: `${scrollY * 0.1}px ${scrollY * 0.25}px, ${-scrollY * 0.08}px ${scrollY * 0.18}px, ${scrollY * 0.06}px ${-scrollY * 0.22}px, ${scrollY * 0.4}px ${scrollY * 0.15}px`,
+          }}
+        />
+
+        {/* Vignette to keep cloth visible but increase contrast */}
+        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.75) 70%, rgba(0,0,0,0.95) 100%)' }} />
+
         {/* Tiny Crowns Repeating Pattern (Parallax) */}
         <div
-          className="absolute inset-0 bg-hero-pattern opacity-100 z-0 mix-blend-screen"
-          style={{ transform: `translateY(${scrollY * 0.2}px)` }}
+          className="absolute inset-0 bg-hero-pattern opacity-100 z-0"
+          style={{ transform: `translateY(${scrollY * 0.25}px)` }}
         />
 
         {/* Radial gold glow */}
@@ -54,10 +66,10 @@ export default function HomePage() {
 
         {/* Giant Crown Watermark */}
         <div 
-          className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none z-0"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+          className="hero-watermark absolute inset-0 flex items-center justify-center opacity-[0.09] pointer-events-none z-0"
+          style={{ transform: `translateY(${scrollY * 0.16}px)` }}
         >
-          <CrownLogo className="w-[150vw] md:w-[100vw] max-w-[1200px] text-gold" />
+          <CrownLogo className="w-[160vw] md:w-[105vw] max-w-[1400px] text-gold" />
         </div>
 
         {/* Floating dots */}
@@ -135,7 +147,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== VALUE PROPS ===== */}
-      <section className="bg-charcoal py-10 px-6">
+      <section className="crown-frame bg-charcoal py-10 px-6">
+        <span className="crown-frame-side left" />
+        <span className="crown-frame-side right" />
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-gold/20">
           {[
             { icon: Gem, label: 'Premium Craftsmanship', desc: '450GSM heavyweight fabrics, precision-stitched' },
@@ -154,7 +168,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== FEATURED PRODUCTS ===== */}
-      <section className="bg-black py-24 px-6" id="collection">
+      <section className="crown-frame bg-black py-24 px-6" id="collection">
+        <span className="crown-frame-side left" />
+        <span className="crown-frame-side right" />
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-16">
@@ -186,7 +202,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== BRAND STORY ===== */}
-      <section className="relative bg-charcoal py-24 px-6 overflow-hidden">
+      <section className="crown-frame relative bg-charcoal py-24 px-6 overflow-hidden">
+        <span className="crown-frame-side left" />
+        <span className="crown-frame-side right" />
         {/* Background pattern */}
         <div className="absolute inset-0 bg-adire-pattern opacity-100 pointer-events-none" />
 
@@ -232,7 +250,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== FEATURED PRODUCT HERO ===== */}
-      <section className="bg-black py-24 px-6">
+      <section className="crown-frame bg-black py-24 px-6">
+        <span className="crown-frame-side left" />
+        <span className="crown-frame-side right" />
         <div className="max-w-7xl mx-auto">
           <div className="relative overflow-hidden kuba-corner">
             <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -275,7 +295,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== CTA BANNER ===== */}
-      <section className="bg-gold py-16 px-6">
+      <section className="crown-frame bg-gold py-16 px-6">
+        <span className="crown-frame-side left" />
+        <span className="crown-frame-side right" />
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-serif text-4xl md:text-5xl text-black font-bold mb-4">
             Join the Movement
