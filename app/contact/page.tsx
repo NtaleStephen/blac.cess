@@ -38,7 +38,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black pt-28 pb-24">
+    <div className="crown-frame min-h-screen bg-black pt-28 pb-24">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}

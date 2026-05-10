@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-black pt-28 pb-24">
+    <div className="crown-frame min-h-screen bg-black pt-28 pb-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Page Header */}

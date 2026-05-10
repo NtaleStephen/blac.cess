@@ -46,7 +46,7 @@ export default function HomePage() {
         />
 
         {/* Vignette to keep cloth visible but increase contrast */}
-        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.85) 100%)' }} />
+        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.38) 70%, rgba(0,0,0,0.65) 100%)' }} />
 
         {/* Radial gold glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">

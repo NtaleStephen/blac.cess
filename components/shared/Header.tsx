@@ -50,7 +50,7 @@ export default function Header() {
             className="group"
             aria-label="Blac.cess — Return to homepage"
           >
-            <CrownLogo className="h-7 w-auto" priority />
+            <CrownLogo className="h-9 md:h-10 w-auto" priority />
           </Link>
 
           {/* Desktop nav */}

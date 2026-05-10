@@ -188,8 +188,7 @@ body {
   position: relative;
 }
 
-.crown-frame::before,
-.crown-frame::after {
+.crown-frame::before {
   content: '';
   position: absolute;
   left: 0;
@@ -207,10 +206,6 @@ body {
 
 .crown-frame::before {
   top: 0;
-}
-
-.crown-frame::after {
-  bottom: 0;
 }
 
 .crown-frame .crown-frame-side {
@@ -246,7 +241,7 @@ body {
 
 /* ===== HERO BACKGROUND CLARITY HELPERS ===== */
 .hero-drapery {
-  filter: contrast(1.2) saturate(0.9) brightness(0.85);
+  filter: contrast(1.05) saturate(0.95) brightness(0.95);
 }
 
 .hero-watermark {

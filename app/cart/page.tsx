@@ -14,7 +14,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-black pt-28 pb-24 flex flex-col items-center justify-center px-6 text-center">
+      <div className="crown-frame min-h-screen bg-black pt-28 pb-24 flex flex-col items-center justify-center px-6 text-center">
         <div className="w-24 h-24 border border-gold/20 flex items-center justify-center mb-8 kuba-corner">
           <ShoppingBag size={32} className="text-gold/30" />
         </div>
@@ -31,7 +31,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black pt-28 pb-24">
+    <div className="crown-frame min-h-screen bg-black pt-28 pb-24">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}

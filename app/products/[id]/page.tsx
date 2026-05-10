@@ -57,7 +57,7 @@ export default function ProductPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-black pt-20">
+    <div className="crown-frame min-h-screen bg-black pt-20">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         {/* Breadcrumb */}

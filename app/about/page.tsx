@@ -31,7 +31,7 @@ const heritagePoints = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="crown-frame min-h-screen bg-black">
 
       {/* ===== HERO ===== */}
       <section className="relative min-h-[70vh] flex items-end pb-20 overflow-hidden pt-28">
