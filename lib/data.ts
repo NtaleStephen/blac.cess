@@ -8,8 +8,8 @@ export const products: Product[] = [
     variant: 'NOIR',
     price: 185,
     currency: 'USD',
-    image: '/images/hoodie-noir.png',
-    gallery: ['/images/hoodie-noir.png', '/images/bomber-eclipse.png'],
+    image: '/images/IMG_4340.JPG',
+    gallery: ['/images/IMG_4340.JPG', '/images/3E8CC15F-49F3-47F7-BC52-CDA9F08732B9.jpg'],
     colors: [
       { name: 'Noir', hex: '#000000', slug: 'noir' },
       { name: 'Charcoal', hex: '#2a2a2a', slug: 'charcoal' },
@@ -30,8 +30,8 @@ export const products: Product[] = [
     variant: 'ECLIPSE',
     price: 245,
     currency: 'USD',
-    image: '/images/bomber-eclipse.png',
-    gallery: ['/images/bomber-eclipse.png', '/images/hoodie-noir.png'],
+    image: '/images/3E8CC15F-49F3-47F7-BC52-CDA9F08732B9.jpg',
+    gallery: ['/images/3E8CC15F-49F3-47F7-BC52-CDA9F08732B9.jpg', '/images/IMG_4340.JPG'],
     colors: [
       { name: 'Eclipse', hex: '#0a0a0a', slug: 'eclipse' },
       { name: 'Midnight', hex: '#1a1a2e', slug: 'midnight' },
@@ -53,8 +53,8 @@ export const products: Product[] = [
     variant: 'OBSIDIAN',
     price: 95,
     currency: 'USD',
-    image: '/images/tee-obsidian.png',
-    gallery: ['/images/tee-obsidian.png', '/images/joggers-shadow.png'],
+    image: '/images/EC5DA517-0A9A-422B-B7EA-9EF99BE80DA5.PNG',
+    gallery: ['/images/EC5DA517-0A9A-422B-B7EA-9EF99BE80DA5.PNG', '/images/F137AD08-1511-4F6A-BFAD-B0E176D6A21C.PNG'],
     colors: [
       { name: 'Obsidian', hex: '#050505', slug: 'obsidian' },
       { name: 'Deep Navy', hex: '#0a0a1a', slug: 'deep-navy' },
@@ -74,8 +74,8 @@ export const products: Product[] = [
     variant: 'SHADOW',
     price: 145,
     currency: 'USD',
-    image: '/images/joggers-shadow.png',
-    gallery: ['/images/joggers-shadow.png', '/images/tee-obsidian.png'],
+    image: '/images/F137AD08-1511-4F6A-BFAD-B0E176D6A21C.PNG',
+    gallery: ['/images/F137AD08-1511-4F6A-BFAD-B0E176D6A21C.PNG', '/images/EC5DA517-0A9A-422B-B7EA-9EF99BE80DA5.PNG'],
     colors: [
       { name: 'Shadow', hex: '#000000', slug: 'shadow' },
     ],
