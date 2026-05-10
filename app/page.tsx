@@ -157,15 +157,15 @@ export default function HomePage() {
               >
                 {[
                   {
-                    src: 'https://images.unsplash.com/photo-1556906781-9a412961d289?w=1200&q=80',
+                    src: '/images/IMG_4340.JPG',
                     alt: 'Product variant — noir',
                   },
                   {
-                    src: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=1200&q=80',
+                    src: '/images/F137AD08-1511-4F6A-BFAD-B0E176D6A21C.PNG',
                     alt: 'Product variant — cream',
                   },
                   {
-                    src: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=1200&q=80',
+                    src: '/images/3E8CC15F-49F3-47F7-BC52-CDA9F08732B9.jpg',
                     alt: 'Product variant — graphite',
                   },
                 ].map(({ src, alt }) => (
