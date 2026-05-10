@@ -244,6 +244,15 @@ body {
   filter: contrast(1.05) saturate(0.95) brightness(0.95);
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .hero-watermark {
   filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.25));
 }

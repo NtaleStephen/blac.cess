@@ -10,7 +10,9 @@ import CrownLogo from '@/components/shared/CrownLogo'
 
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0)
+  const [variantIndex, setVariantIndex] = useState(0)
   const heroRef = useRef<HTMLDivElement>(null)
+  const variantScrollerRef = useRef<HTMLDivElement>(null)
   const products = getFeaturedProducts()
 
   useEffect(() => {
@@ -138,62 +140,95 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 gold-divider" />
       </section>
 
-      {/* ===== QUICK SHOP STRIP (HORIZONTAL SCROLL) ===== */}
-      <section className="crown-frame bg-charcoal py-10 px-6">
+      {/* ===== QUICK SHOP (SINGLE PRODUCT + VARIANTS) ===== */}
+      <section className="crown-frame bg-charcoal py-12 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between gap-6 mb-6">
+          <div className="flex items-end justify-between gap-6 mb-8">
             <div>
-              <p className="gold-label mb-2">Shop Faster</p>
-              <h2 className="font-serif text-3xl md:text-4xl text-white">Swipe through the drops</h2>
+              <p className="gold-label mb-3">Shop Faster</p>
+              <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight">Swipe the variants</h2>
+              <p className="text-gray-500 text-sm mt-3 max-w-xl">
+                One piece. Multiple colorways. Swipe horizontally or tap the color dots.
+              </p>
             </div>
-            <Link href="/products" className="btn-ghost-gold hidden sm:inline-flex items-center gap-2 px-6 py-3 text-xs group">
+            <Link href="/products" className="btn-ghost-gold hidden sm:inline-flex items-center gap-2 px-8 py-4 text-xs group">
               Go to Products
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="-mx-6 px-6 overflow-x-auto">
-            <div className="flex gap-4 w-max pb-2">
-              {[
-                {
-                  src: 'https://images.unsplash.com/photo-1520975958221-8d3f8d8b7f92?auto=format&fit=crop&w=1400&q=80',
-                  alt: 'Blac.cess product preview — hoodie',
-                  className: 'w-[78vw] sm:w-[520px] h-[320px] sm:h-[340px]',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1520975693410-001e70f6e3a0?auto=format&fit=crop&w=1200&q=80',
-                  alt: 'Blac.cess product preview — jacket',
-                  className: 'w-[62vw] sm:w-[420px] h-[260px] sm:h-[280px]',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1520975867597-0d7cc44be4c3?auto=format&fit=crop&w=1200&q=80',
-                  alt: 'Blac.cess product preview — tee',
-                  className: 'w-[54vw] sm:w-[360px] h-[300px] sm:h-[340px]',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1520975699161-9a444548d652?auto=format&fit=crop&w=1200&q=80',
-                  alt: 'Blac.cess product preview — details',
-                  className: 'w-[70vw] sm:w-[480px] h-[240px] sm:h-[260px]',
-                },
-              ].map(({ src, alt, className }) => (
-                <Link
-                  key={src}
-                  href="/products"
-                  className={`relative shrink-0 overflow-hidden kuba-corner border border-gold/20 bg-black/30 ${className}`}
-                >
-                  <img
-                    src={src}
-                    alt={alt}
-                    className="absolute inset-0 w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition-opacity"
-                    loading="lazy"
+          <div className="relative">
+            <div className="relative overflow-hidden kuba-corner border border-gold/20 bg-black/35">
+              <div
+                ref={variantScrollerRef}
+                data-variant-scroller
+                className="hide-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
+                onScroll={e => {
+                  const el = e.currentTarget
+                  const index = Math.round(el.scrollLeft / el.clientWidth)
+                  setVariantIndex(index)
+                }}
+              >
+                {[
+                  {
+                    src: 'https://images.unsplash.com/photo-1520975958221-8d3f8d8b7f92?auto=format&fit=crop&w=1800&q=80',
+                    alt: 'Product variant — noir',
+                  },
+                  {
+                    src: 'https://images.unsplash.com/photo-1520975693410-001e70f6e3a0?auto=format&fit=crop&w=1800&q=80',
+                    alt: 'Product variant — cream',
+                  },
+                  {
+                    src: 'https://images.unsplash.com/photo-1520975867597-0d7cc44be4c3?auto=format&fit=crop&w=1800&q=80',
+                    alt: 'Product variant — graphite',
+                  },
+                ].map(({ src, alt }) => (
+                  <Link
+                    key={src}
+                    href="/products"
+                    className="relative w-full shrink-0 snap-center"
+                  >
+                    <div className="relative h-[420px] sm:h-[520px]">
+                      <img
+                        src={src}
+                        alt={alt}
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              <div className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+                {[
+                  { color: '#0b0b0b', label: 'Noir', index: 0 },
+                  { color: '#d8d6cf', label: 'Cream', index: 1 },
+                  { color: '#5a5a5a', label: 'Graphite', index: 2 },
+                ].map(({ color, label, index }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    aria-label={`Select ${label} variant`}
+                    aria-pressed={variantIndex === index}
+                    className={`w-3.5 h-3.5 rounded-full border transition-colors ${
+                      variantIndex === index ? 'border-gold ring-2 ring-gold/30' : 'border-white/30 hover:border-gold'
+                    }`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => {
+                      const scroller = variantScrollerRef.current
+                      if (!scroller) return
+                      scroller.scrollTo({ left: index * scroller.clientWidth, behavior: 'smooth' })
+                      setVariantIndex(index)
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
-                </Link>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="mt-6 sm:hidden">
+          <div className="mt-8 sm:hidden">
             <Link href="/products" className="btn-ghost-gold inline-flex items-center gap-2 px-8 py-4 text-xs group">
               Go to Products
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
