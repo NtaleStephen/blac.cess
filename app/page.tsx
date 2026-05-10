@@ -141,24 +141,10 @@ export default function HomePage() {
       </section>
 
       {/* ===== QUICK SHOP (SINGLE PRODUCT + VARIANTS) ===== */}
-      <section className="crown-frame bg-charcoal py-12 px-6">
+      <section className="crown-frame bg-charcoal">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between gap-6 mb-8">
-            <div>
-              <p className="gold-label mb-3">Shop Faster</p>
-              <h2 className="font-serif text-3xl md:text-5xl text-white leading-tight">Swipe the variants</h2>
-              <p className="text-gray-500 text-sm mt-3 max-w-xl">
-                One piece. Multiple colorways. Swipe horizontally or tap the color dots.
-              </p>
-            </div>
-            <Link href="/products" className="btn-ghost-gold hidden sm:inline-flex items-center gap-2 px-8 py-4 text-xs group">
-              Go to Products
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="relative">
-            <div className="relative overflow-hidden kuba-corner border border-gold/20 bg-black/35">
+          <div className="relative flex justify-center">
+            <div className="relative w-full overflow-hidden kuba-corner border border-gold/20 bg-black/35">
               <div
                 ref={variantScrollerRef}
                 data-variant-scroller
@@ -201,7 +187,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+              <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex items-center gap-3 z-10">
                 {[
                   { color: '#0b0b0b', label: 'Noir', index: 0 },
                   { color: '#d8d6cf', label: 'Cream', index: 1 },
@@ -226,13 +212,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
-
-          <div className="mt-8 sm:hidden">
-            <Link href="/products" className="btn-ghost-gold inline-flex items-center gap-2 px-8 py-4 text-xs group">
-              Go to Products
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </div>
       </section>
