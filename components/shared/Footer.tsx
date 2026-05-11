@@ -41,7 +41,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <BrandLogo className="h-12 w-auto rounded" variant="full" />
+              <BrandLogo variant="full" iconSize={36} />
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
               Culturally-inspired luxury streetwear. Premium pieces rooted in African heritage, crafted for those who wear their identity with intention.

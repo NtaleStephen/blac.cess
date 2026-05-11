@@ -1,41 +1,55 @@
 import Image from 'next/image'
+import clsx from 'clsx'
 
 type Props = {
   className?: string
-  style?: React.CSSProperties
-  priority?: boolean
-  variant?: 'full' | 'icon'
+  variant?: 'full' | 'icon' | 'text'
+  iconSize?: number
+  dark?: boolean
 }
 
 export default function BrandLogo({
   className,
-  style,
-  priority = false,
   variant = 'full',
+  iconSize = 32,
+  dark = false,
 }: Props) {
+  const textColor = dark ? 'text-black' : 'text-gold'
+
   if (variant === 'icon') {
     return (
       <Image
-        src="/images/E65ECE06-D9A8-47B2-A4FE-CC28190076EA.jpg"
+        src="/images/brand-logo.jpg"
         alt="Blac.cess"
-        width={200}
-        height={200}
-        priority={priority}
-        className={className}
-        style={style}
+        width={iconSize}
+        height={iconSize}
+        className={clsx('rounded', className)}
       />
     )
   }
 
+  if (variant === 'text') {
+    return (
+      <span className={clsx('font-serif tracking-tight', textColor, className)}>
+        blac.cess
+      </span>
+    )
+  }
+
+  // Full variant: icon + text
   return (
-    <Image
-      src="/images/brand.jpg"
-      alt="Blac.cess"
-      width={400}
-      height={200}
-      priority={priority}
-      className={className}
-      style={style}
-    />
+    <div className={clsx('flex items-center gap-2', className)}>
+      <Image
+        src="/images/brand-logo.jpg"
+        alt=""
+        width={iconSize}
+        height={iconSize}
+        className="rounded"
+        priority
+      />
+      <span className={clsx('font-serif text-xl md:text-2xl tracking-tight', textColor)}>
+        blac.cess
+      </span>
+    </div>
   )
 }

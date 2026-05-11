@@ -70,16 +70,13 @@ export default function Header() {
         {/* Centered Logo */}
         <Link
           href="/"
-          className={clsx(
-            'absolute left-1/2 -translate-x-1/2 rounded-lg overflow-hidden',
-            isLightBg && 'shadow-lg'
-          )}
+          className="absolute left-1/2 -translate-x-1/2"
           aria-label="Blac.cess — Home"
         >
           <BrandLogo
-            className="h-10 md:h-12 w-auto"
-            priority
             variant="full"
+            iconSize={28}
+            dark={isLightBg}
           />
         </Link>
 
