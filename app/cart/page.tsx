@@ -149,10 +149,13 @@ export default function CartPage() {
                 <span className="text-gold font-bold text-xl">${(totalPrice + shipping).toFixed(0)}</span>
               </div>
 
-              <button className="w-full bg-gold/20 border border-gold/50 text-gold rounded-xl py-3 text-sm font-medium hover:bg-gold/30 transition-colors flex items-center justify-center gap-2">
+              <Link
+                href="/checkout"
+                className="w-full bg-gold/20 border border-gold/50 text-gold rounded-xl py-3 text-sm font-medium hover:bg-gold/30 transition-colors flex items-center justify-center gap-2"
+              >
                 Checkout
                 <ArrowRight size={16} />
-              </button>
+              </Link>
 
               <Link
                 href="/products"

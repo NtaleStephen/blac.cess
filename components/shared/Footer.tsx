@@ -18,10 +18,10 @@ const links = {
     { href: '/contact#faq', label: 'FAQ' },
   ],
   legal: [
-    { href: '/policies', label: 'Shipping Policy' },
-    { href: '/policies', label: 'Returns' },
-    { href: '/policies', label: 'Privacy Policy' },
-    { href: '/policies', label: 'Terms' },
+    { href: '/policies#shipping', label: 'Shipping' },
+    { href: '/policies#returns', label: 'Returns' },
+    { href: '/policies#privacy', label: 'Privacy' },
+    { href: '/policies#terms', label: 'Terms' },
   ],
 }
 

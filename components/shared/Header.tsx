@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ShoppingBag, Menu } from 'lucide-react'
+import { ShoppingBag, Menu, Search, User } from 'lucide-react'
 import { useCartStore } from '@/store/cart'
 import clsx from 'clsx'
 import BrandLogo from '@/components/shared/BrandLogo'
@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/products', label: 'Shop' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
+  { href: '/policies', label: 'Policies' },
 ]
 
 export default function Header() {
@@ -82,7 +83,35 @@ export default function Header() {
         </Link>
 
         {/* Right side icons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          {/* Search */}
+          <Link
+            href="/search"
+            className={clsx(
+              'w-10 h-10 flex items-center justify-center transition-colors rounded-full',
+              isLightBg
+                ? 'text-black/60 hover:text-black hover:bg-black/5'
+                : 'text-white/70 hover:text-white hover:bg-white/5'
+            )}
+            aria-label="Search"
+          >
+            <Search size={18} />
+          </Link>
+
+          {/* Account */}
+          <Link
+            href="/account"
+            className={clsx(
+              'w-10 h-10 flex items-center justify-center transition-colors rounded-full',
+              isLightBg
+                ? 'text-black/60 hover:text-black hover:bg-black/5'
+                : 'text-white/70 hover:text-white hover:bg-white/5'
+            )}
+            aria-label="Account"
+          >
+            <User size={18} />
+          </Link>
+
           {/* Cart */}
           <button
             onClick={openCart}
@@ -94,7 +123,7 @@ export default function Header() {
             )}
             aria-label={`Cart — ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
           >
-            <ShoppingBag size={20} />
+            <ShoppingBag size={18} />
             {totalItems > 0 && (
               <span className={clsx(
                 'absolute -top-1 -right-1 w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center',
