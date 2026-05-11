@@ -2,28 +2,21 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ShoppingBag, Menu, X, Search } from 'lucide-react'
+import { ShoppingBag, Menu, X } from 'lucide-react'
 import { useCartStore } from '@/store/cart'
 import clsx from 'clsx'
 import CrownLogo from '@/components/shared/CrownLogo'
 
 const navLinks = [
-  { href: '/products', label: 'Collection' },
+  { href: '/products', label: 'Shop' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const { getTotalItems, openCart } = useCartStore()
   const totalItems = getTotalItems()
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   // Lock body scroll when mobile menu open
   useEffect(() => {
@@ -34,136 +27,87 @@ export default function Header() {
   return (
     <>
       <header
-        className={clsx(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-500',
-          scrolled
-            ? 'glass-panel py-3 rounded-b-[2rem] mx-2 mt-2 border-t-0'
-            : 'bg-transparent py-5'
-        )}
+        className="fixed top-0 left-0 right-0 z-40 py-4 md:py-6"
         role="banner"
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-          {/* Logo */}
+          {/* Menu toggle - left */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+
+          {/* Centered Logo */}
           <Link
             href="/"
-            className="group"
-            aria-label="Blac.cess — Return to homepage"
+            className="absolute left-1/2 -translate-x-1/2"
+            aria-label="Blac.cess — Home"
           >
-            <CrownLogo className="h-9 md:h-10 w-auto" priority />
+            <CrownLogo className="h-8 md:h-9 w-auto" priority />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-10" aria-label="Primary navigation">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-xs tracking-[0.2em] uppercase text-gray-400 hover:text-gold transition-colors duration-200 relative group"
-              >
-                {label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
-          </nav>
-
-          {/* Right icons */}
-          <div className="flex items-center gap-5">
-            {/* Search — desktop only */}
-            <button
-              className="hidden md:flex text-gray-400 hover:text-gold transition-colors"
-              aria-label="Search products"
-              id="search-btn"
-            >
-              <Search size={18} />
-            </button>
-
-            {/* Cart */}
-            <button
-              onClick={openCart}
-              className="relative text-gray-400 hover:text-gold transition-colors"
-              aria-label={`Shopping cart — ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
-              id="cart-btn"
-            >
-              <ShoppingBag size={20} />
-              {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gold text-black text-[10px] font-bold flex items-center justify-center">
-                  {totalItems > 9 ? '9+' : totalItems}
-                </span>
-              )}
-            </button>
-
-            {/* Hamburger */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-gray-400 hover:text-gold transition-colors"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-              id="mobile-menu-btn"
-            >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
+          {/* Cart - right */}
+          <button
+            onClick={openCart}
+            className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors relative"
+            aria-label={`Cart — ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
+          >
+            <ShoppingBag size={20} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white text-black text-[10px] font-bold flex items-center justify-center">
+                {totalItems > 9 ? '9+' : totalItems}
+              </span>
+            )}
+          </button>
         </div>
       </header>
 
-      {/* ===== MOBILE MENU ===== */}
+      {/* ===== FULLSCREEN MENU ===== */}
       <div
         className={clsx(
-          'fixed inset-0 z-50 md:hidden transition-all duration-500',
+          'fixed inset-0 z-50 transition-all duration-500',
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         )}
       >
         {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/95 backdrop-blur-md"
           onClick={() => setMenuOpen(false)}
         />
 
-        {/* Drawer */}
-        <div
-          className={clsx(
-            'absolute top-0 right-0 h-full w-72 bg-charcoal border-l border-gold/20 flex flex-col transition-transform duration-500',
-            menuOpen ? 'translate-x-0' : 'translate-x-full'
-          )}
-        >
-          {/* Close */}
-          <div className="flex items-center justify-between p-6 border-b border-gold/20">
-            <span className="font-serif text-lg text-gold">Menu</span>
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="text-gray-400 hover:text-white"
-              aria-label="Close menu"
-            >
-              <X size={20} />
-            </button>
-          </div>
+        {/* Menu content */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-center">
+          {/* Close button */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-4 md:top-6 left-6 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={20} />
+          </button>
 
-          {/* Links */}
-          <nav className="flex flex-col gap-0 flex-1" aria-label="Mobile navigation">
+          {/* Navigation links */}
+          <nav className="flex flex-col items-center gap-8">
             {navLinks.map(({ href, label }, i) => (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="px-8 py-5 text-sm tracking-widest uppercase text-gray-300 hover:text-gold hover:bg-black/30 transition-all border-b border-gold/10"
-                style={{ animationDelay: `${i * 0.1}s` }}
+                className={clsx(
+                  'text-3xl md:text-5xl font-serif text-white/80 hover:text-white transition-all duration-300 transform',
+                  menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                )}
+                style={{ transitionDelay: menuOpen ? `${i * 100}ms` : '0ms' }}
               >
                 {label}
               </Link>
             ))}
           </nav>
-
-          {/* Cart in mobile menu */}
-          <div className="p-6 border-t border-gold/20">
-            <button
-              onClick={() => { setMenuOpen(false); openCart() }}
-              className="w-full btn-ghost-gold px-6 py-3 text-sm flex items-center justify-center gap-2"
-            >
-              <ShoppingBag size={16} />
-              Cart {totalItems > 0 && `(${totalItems})`}
-            </button>
-          </div>
         </div>
       </div>
     </>
