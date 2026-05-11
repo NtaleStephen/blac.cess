@@ -160,6 +160,34 @@ body {
     border: 1px solid rgba(212, 175, 55, 0.3);
     color: var(--gold);
   }
+
+  /* Liquid Glass Button — iOS 26 Inspired */
+  .liquid-glass-btn {
+    @apply rounded-xl border backdrop-blur-md;
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  }
+
+  .liquid-glass-btn:hover:not(:disabled) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+
+  /* Liquid Glass Card — Dark variant for dark backgrounds */
+  .liquid-glass-dark {
+    @apply rounded-2xl border backdrop-blur-xl;
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Liquid Glass Dropdown */
+  .liquid-glass-dropdown {
+    @apply rounded-2xl border backdrop-blur-xl;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
 }
 
 /* ===== ANIMATIONS ===== */

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingBag, Menu, X } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { ShoppingBag, Menu } from 'lucide-react'
 import { useCartStore } from '@/store/cart'
 import clsx from 'clsx'
 import CrownLogo from '@/components/shared/CrownLogo'
@@ -17,99 +18,91 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { getTotalItems, openCart } = useCartStore()
   const totalItems = getTotalItems()
+  const pathname = usePathname()
 
-  // Lock body scroll when mobile menu open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+  // Determine if we're on a light background page (homepage or product detail)
+  const isLightBg = pathname === '/' || (pathname.startsWith('/products/') && pathname !== '/products')
 
   return (
-    <>
-      <header
-        className="fixed top-0 left-0 right-0 z-40 py-4 md:py-6"
-        role="banner"
-      >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-40 py-4 md:py-6" role="banner">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-          {/* Menu toggle - left */}
+        {/* Menu with hover dropdown - left */}
+        <div
+          className="relative"
+          onMouseEnter={() => setMenuOpen(true)}
+          onMouseLeave={() => setMenuOpen(false)}
+        >
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            className={clsx(
+              'w-10 h-10 flex items-center justify-center transition-colors',
+              isLightBg ? 'text-black/60 hover:text-black' : 'text-white/70 hover:text-white'
+            )}
+            aria-label="Menu"
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            <Menu size={20} />
           </button>
 
-          {/* Centered Logo */}
-          <Link
-            href="/"
-            className="absolute left-1/2 -translate-x-1/2"
-            aria-label="Blac.cess — Home"
+          {/* Dropdown menu on hover */}
+          <div
+            className={clsx(
+              'absolute top-full left-0 mt-2 py-2 min-w-[160px] liquid-glass-dropdown transition-all duration-200',
+              menuOpen
+                ? 'opacity-100 translate-y-0 pointer-events-auto'
+                : 'opacity-0 -translate-y-2 pointer-events-none'
+            )}
           >
-            <CrownLogo className="h-8 md:h-9 w-auto" priority />
-          </Link>
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="block px-5 py-2.5 text-sm text-black/80 hover:text-black hover:bg-black/5 transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
 
-          {/* Cart - right */}
+        {/* Centered Logo */}
+        <Link
+          href="/"
+          className="absolute left-1/2 -translate-x-1/2"
+          aria-label="Blac.cess — Home"
+        >
+          <CrownLogo
+            className={clsx(
+              'h-8 md:h-9 w-auto transition-all',
+              isLightBg && 'invert'
+            )}
+            priority
+          />
+        </Link>
+
+        {/* Right side icons */}
+        <div className="flex items-center gap-2">
+          {/* Cart */}
           <button
             onClick={openCart}
-            className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors relative"
+            className={clsx(
+              'w-10 h-10 flex items-center justify-center transition-colors relative',
+              isLightBg ? 'text-black/60 hover:text-black' : 'text-white/70 hover:text-white'
+            )}
             aria-label={`Cart — ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
           >
             <ShoppingBag size={20} />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white text-black text-[10px] font-bold flex items-center justify-center">
+              <span className={clsx(
+                'absolute -top-1 -right-1 w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center',
+                isLightBg ? 'bg-black text-white' : 'bg-white text-black'
+              )}>
                 {totalItems > 9 ? '9+' : totalItems}
               </span>
             )}
           </button>
         </div>
-      </header>
-
-      {/* ===== FULLSCREEN MENU ===== */}
-      <div
-        className={clsx(
-          'fixed inset-0 z-50 transition-all duration-500',
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        )}
-      >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/95 backdrop-blur-md"
-          onClick={() => setMenuOpen(false)}
-        />
-
-        {/* Menu content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center">
-          {/* Close button */}
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="absolute top-4 md:top-6 left-6 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-            aria-label="Close menu"
-          >
-            <X size={20} />
-          </button>
-
-          {/* Navigation links */}
-          <nav className="flex flex-col items-center gap-8">
-            {navLinks.map(({ href, label }, i) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className={clsx(
-                  'text-3xl md:text-5xl font-serif text-white/80 hover:text-white transition-all duration-300 transform',
-                  menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                )}
-                style={{ transitionDelay: menuOpen ? `${i * 100}ms` : '0ms' }}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
       </div>
-    </>
+    </header>
   )
 }
