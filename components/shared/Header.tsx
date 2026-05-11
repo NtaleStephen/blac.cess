@@ -20,8 +20,9 @@ export default function Header() {
   const totalItems = getTotalItems()
   const pathname = usePathname()
 
-  // Determine if we're on a light background page (homepage or product detail)
-  const isLightBg = pathname === '/' || (pathname.startsWith('/products/') && pathname !== '/products')
+  // Determine if we're on a light background page (homepage or product detail only)
+  const isProductDetail = pathname.startsWith('/products/') && pathname !== '/products'
+  const isLightBg = pathname === '/' || isProductDetail
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 py-3 md:py-4" role="banner">
