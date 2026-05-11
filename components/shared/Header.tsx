@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { ShoppingBag, Menu } from 'lucide-react'
 import { useCartStore } from '@/store/cart'
 import clsx from 'clsx'
-import CrownLogo from '@/components/shared/CrownLogo'
+import BrandLogo from '@/components/shared/BrandLogo'
 
 const navLinks = [
   { href: '/products', label: 'Shop' },
@@ -24,8 +24,8 @@ export default function Header() {
   const isLightBg = pathname === '/' || (pathname.startsWith('/products/') && pathname !== '/products')
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 py-4 md:py-6" role="banner">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-40 py-3 md:py-4" role="banner">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
 
         {/* Menu with hover dropdown - left */}
         <div
@@ -35,8 +35,10 @@ export default function Header() {
         >
           <button
             className={clsx(
-              'w-10 h-10 flex items-center justify-center transition-colors',
-              isLightBg ? 'text-black/60 hover:text-black' : 'text-white/70 hover:text-white'
+              'w-10 h-10 flex items-center justify-center transition-colors rounded-full',
+              isLightBg
+                ? 'text-black/60 hover:text-black hover:bg-black/5'
+                : 'text-white/70 hover:text-white hover:bg-white/5'
             )}
             aria-label="Menu"
             aria-expanded={menuOpen}
@@ -68,15 +70,16 @@ export default function Header() {
         {/* Centered Logo */}
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2"
+          className={clsx(
+            'absolute left-1/2 -translate-x-1/2 rounded-lg overflow-hidden',
+            isLightBg && 'shadow-lg'
+          )}
           aria-label="Blac.cess — Home"
         >
-          <CrownLogo
-            className={clsx(
-              'h-8 md:h-9 w-auto transition-all',
-              isLightBg && 'invert'
-            )}
+          <BrandLogo
+            className="h-10 md:h-12 w-auto"
             priority
+            variant="full"
           />
         </Link>
 
@@ -86,8 +89,10 @@ export default function Header() {
           <button
             onClick={openCart}
             className={clsx(
-              'w-10 h-10 flex items-center justify-center transition-colors relative',
-              isLightBg ? 'text-black/60 hover:text-black' : 'text-white/70 hover:text-white'
+              'w-10 h-10 flex items-center justify-center transition-colors relative rounded-full',
+              isLightBg
+                ? 'text-black/60 hover:text-black hover:bg-black/5'
+                : 'text-white/70 hover:text-white hover:bg-white/5'
             )}
             aria-label={`Cart — ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
           >
@@ -95,7 +100,7 @@ export default function Header() {
             {totalItems > 0 && (
               <span className={clsx(
                 'absolute -top-1 -right-1 w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center',
-                isLightBg ? 'bg-black text-white' : 'bg-white text-black'
+                isLightBg ? 'bg-black text-white' : 'bg-gold text-black'
               )}>
                 {totalItems > 9 ? '9+' : totalItems}
               </span>
